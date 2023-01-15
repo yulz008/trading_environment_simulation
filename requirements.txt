@@ -1,5 +1,4 @@
 Flask==1.1.2
-flash==1.0.0
 redirect==1.0.0
 jsonify==1.0.0
 csv==0.0.1
