@@ -1,0 +1,3 @@
+* connect HTML as index routes using flask..
+python -m flask --app app2 run
+python -m flask --app app2 --debug run
