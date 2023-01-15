@@ -142,6 +142,12 @@
     <div id="Output_box2" style="width: 150px; float:left;"> {{symbols[0][2]}} </div>
     <div id="Output_box3" style="width: 300px; float:left;"> {{symbols[0][1]}} </div>
     <div id="table_update" style="width: 300px; float:left; position: absolute; top: 35px; left: 81%; font-style: italic;">  </div>
+    <div id="Trading_View" style="width: 300px; float:left; position: absolute; left: 69%"> 
+      
+      Charts powered by
+      <a href="https://www.tradingview.com/HTML5-stock-forex-bitcoin-charting-library/?feature=technical-analysis-charts">    TradingView</a>
+    
+    </div>
 
   
 
@@ -247,6 +253,7 @@
   <script>
     document.getElementById("datepicker").valueAsDate = new Date();
     var prev_day = document.getElementById("datepicker").valueAsDate;
+    document.getElementById("Output_box3").innerHTML = new Date();
     
 
   </script>
