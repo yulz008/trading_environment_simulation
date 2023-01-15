@@ -301,7 +301,7 @@ if __name__ == '__main__':
     create_dotenv()
     load_dotenv()
     client = Client(os.getenv("API_KEY"), os.getenv("API_SECRET"))
-    app.run(host=os.getenv("APP_HOST"),port=os.getenv("APP_PORT"))
+    app.run(host='0.0.0.0',port=os.getenv("APP_PORT"))
     
 
 
