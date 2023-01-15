@@ -66,8 +66,8 @@ def get_symbol_info_change (**input):
                 candlesticks = [[random.uniform(0, 100) for _ in range(7)],[random.uniform(0, 100) for _ in range(7)]]
 
             else:
-                #candlesticks = client.get_historical_klines(x, Client.KLINE_INTERVAL_1DAY,prev_day,present_day)
-                candlesticks = [[random.uniform(0, 100) for _ in range(7)],[random.uniform(0, 100) for _ in range(7)]]
+                candlesticks = client.get_historical_klines(x, Client.KLINE_INTERVAL_1DAY,prev_day,present_day)
+                #candlesticks = [[random.uniform(0, 100) for _ in range(7)],[random.uniform(0, 100) for _ in range(7)]]
 
             et = time.time()
             elapsed_time = et - st
