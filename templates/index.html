@@ -301,7 +301,7 @@
           candleSeries.setData(response);
 
 
-          document.getElementById('Output_box2').innerHTML = response[response.length - 1].close;
+          
          // console.log(response);
           var timestamp = response[response.length - 1].time * 1000; //had to convert it back to miliseconds, this was manipulated in backend fetch
           document.getElementById('Output_box3').innerHTML = new Date(timestamp);
