@@ -57,6 +57,8 @@ fetch(base_url)
           //console.log(response)
 
 		  candleSeries.setData(response);
+                  
+		  document.getElementById("Output_box2").innerHTML = response[response.length -1].close;
 
 	})
 
