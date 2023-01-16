@@ -207,7 +207,7 @@
 
           {% for pairs in symbols %}
 
-          <tr data value={{pairs[0]}} class="normal" onclick="onRow(this.id)" id={{pairs[0]}}>
+          <tr data value={{pairs[0]}} class="normal"  id={{pairs[0]}}>
 
             <td> {{pairs[0]}} </td>
             <td> {{pairs[2]}} </td>
@@ -241,7 +241,7 @@
     var app_host = '{{app_host}}';
     var app_port = '{{app_port}}';
     var base_url = 'http://'+ '{{app_host}}' + ':'+ '{{app_port}}' + '/history'
-    console.log(base_url);
+    //console.log(base_url);
 
   </script>
 
@@ -270,13 +270,13 @@
       var start = Date.now();
 
       //*************************
-      document.getElementById('Output_box').innerHTML = row.getAttribute('value')
+      document.getElementById('Output_box').innerHTML = row.getAttribute('value');
 
 
 
       document.getElementById("get_history").setAttribute('value', row.innerHTML)
       var start = Date.now();
-      console.log(row.getAttribute('id'));
+      //console.log(row.getAttribute('id'));
       var date_input = document.getElementById("datepicker");
       //alert(date_input)
 
@@ -400,7 +400,7 @@
 
 
     function highlight_row_routine() {
-      let currentRow = null;
+      
 
       var tbody_row = document.querySelector("tbody");
       const rows = tbody_row.querySelectorAll("tr");
@@ -409,21 +409,39 @@
       // add event listener for clicking on rows
       rows.forEach(row => {
         row.addEventListener("click", () => {
+
+          let currentRow = document.getElementsByClassName("highlight")[0];
           if (currentRow) {
             currentRow.classList.remove("highlight");
             currentRow.classList.add("normal");
           }
           currentRow = row;
-          currentRow.classList.remove("normal");
+          //currentRow.classList.remove("normal");
           currentRow.classList.add("highlight");
         });
       });
 
-      // add event listener for keyboard arrow keys
-      document.addEventListener("keydown", function (event) {
-        if (event.key === "ArrowUp" || event.key === "ArrowDown") {
-          event.preventDefault()
+
+      
+
+      
+    }
+
+
+
+
+
+
+
+    highlight_row_routine();
+
+    // add event listener for keyboard arrow keys
+    document.addEventListener("keydown", function () {
+           if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+            event.preventDefault()
           // check if a row is currently selected
+
+          var currentRow = document.getElementsByClassName("highlight")[0];
           if (currentRow) {
             let newRow = null;
             if (event.key === "ArrowUp") {
@@ -447,17 +465,9 @@
           }
           //for arrow down selector
           request_for_historical_data(currentRow);
+          
         }
       });
-    }
-
-
-
-
-
-
-
-    highlight_row_routine();
 
 
   </script>
@@ -658,7 +668,7 @@
         .then((response) => {
 
 
-          console.log(response);
+          //console.log(response);
 
 
           //delete all rows in present table
@@ -682,7 +692,7 @@
             var row = table.insertRow(i);
             row.classList.add("normal");
             row.setAttribute('id', 'row' + (i + 1));
-            row.setAttribute('onclick', 'onRow(this.id)');
+            
             row.setAttribute('value', newData[i][0]);
 
             var cell = row.insertCell(0);
