@@ -1,7 +1,0 @@
-
-
-git clone https://github.com/yulz008/trading_environment_simulation.git
-cd your-repository
-pip install -r requirements.txt
-
-python app.py
