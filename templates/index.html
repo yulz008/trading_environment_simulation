@@ -13,7 +13,7 @@
 
   /* .higlight is an object to be pass on a class attribute, rembember an element assign to a class on this will directly affect the attribute without the specifier (eg td tr*/
   .highlight {
-    border: 2px solid rgb(47, 0, 255);
+    border: 2px solid rgb(47, 0, 255) !important;
   }
 
   .normal td {
@@ -21,23 +21,67 @@
   }
 </style>
 
+<style>
+
+ html, body {
+  
+  overflow: hidden; /* Hide scrollbars */
+ }
+</style>
+
 
 <style>
   .chart_resize {
-    border: 2px solid rgb(177, 170, 170);
-    Height: 85%;
-    width: 80%;
+    border: 2px solid rgb(218, 218, 218);
+    Height: 80%;
+    width: 78%;
+    top: 28px;
+    left: 20px;
     position: relative;
   }
 
   .table_div_test {
-    border: 2px solid rgb(178, 176, 176);
+    border: 2px solid solid rgb(232, 230, 230);
     position: absolute;
     left: 81%;
     top: 55px;
-    Height: 83.5%;
-    width: 17.5%;
+    Height: 81.8%;
+    width: 18%;
+
+    overflow-y: scroll;
+
+    scrollbar-width: thin;
   }
+
+
+
+
+  .table_div_test::-webkit-scrollbar {
+    background-color: transparent;
+    width: 0.4em;
+  }
+
+  .table_div_test::-webkit-scrollbar-thumb {
+
+    border-radius: 2px;
+  }
+
+  .scrollbar-hover::-webkit-scrollbar-thumb {
+    background-color: #b8b4b4;
+  }
+
+
+  .table_div_test::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  .table_div_test::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+
+
+
+
 
 
   .table_div_test thead {
@@ -65,7 +109,7 @@
 
     width: 100%;
     margin-top: 30px;
-    overflow-y: scroll;
+
 
 
   }
@@ -77,15 +121,38 @@
     grid-template-columns: 20% 30% 20% 30%;
     grid-template-rows: 30px auto;
     grid-gap: 7px;
+    table-layout: fixed;
+    max-width: 100%;
   }
+
+  #table_pair {
+    width: 100% !important;
+    table-layout: fixed !important;
+    max-width: 100% !important;
+
+
+  }
+
+
+
+  #table_pair td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+
+
 
   .table_div_test tr {
     background-color: white;
     height: 24px;
+    font-size: 14px;
   }
 
   .table_div_test tr:hover {
     background-color: rgb(227, 222, 222);
+
   }
 
 
@@ -98,10 +165,10 @@
 
 
   div.date_div_test {
-    border: 2px solid rgb(255, 255, 255);
+
     position: absolute;
-    left: 85%;
-    top: 92%;
+    left: 87%;
+    top: 93%;
     Height: 5%;
     width: 15%;
   }
@@ -110,7 +177,7 @@
 
 
   div.date_div_test1 {
-    border: 2px solid rgb(255, 255, 255);
+
     position: absolute;
     left: 82%;
     top: 92%;
@@ -126,57 +193,44 @@
   .greentext {
     color: rgb(2, 153, 2)
   }
+
+
+
+  .greytext {
+    color: rgb(156, 156, 156)
+  }
+
+  .transparenttext {
+    color: transparent
+  }
+
+
+  .heart-symbol {
+    color: transparent;
+  }
+
+
+  .blacktext {
+    color: rgb(7, 7, 7)
+  }
 </style>
 
-<body>
+<body style="background-color: rgb(250, 250, 250)" class="body">
   <h2 style="font-family:'Century Gothic'"> {{title}} </h2>
 
   <div id="chart" class="chart_resize"> </div>
 
   <!--table for pairs <div class=" table_div_test"></div>--->
 
-  <div id="trades">
 
-    <p> </p>
-    <div id="Output_box" style="width: 100px; float:left;"> {{symbols[0][0]}} </div>
-    <div id="Output_box2" style="width: 150px; float:left;"> {{symbols[0][2]}} </div>
-    <div id="Output_box3" style="width: 300px; float:left;"> {{symbols[0][1]}} </div>
-    <div id="table_update" style="width: 300px; float:left; position: absolute; top: 35px; left: 81%; font-style: italic;">  </div>
-    <div id="Trading_View" style="width: 300px; float:left; position: absolute; left: 69%"> 
-      
-      Charts powered by
-      <a href="https://www.tradingview.com/HTML5-stock-forex-bitcoin-charting-library/?feature=technical-analysis-charts">    TradingView</a>
-    
+
+
+  <div id="simulation_time"
+    style="width: 79%; text-align: right; position: absolute; top: 55px; font-size: 100%; font-family: 'Century Gothic',  sans-serif; ">
+    <div id="inner-simulation-time" style="position: absolute; right: 0; left:0; ">
+      <p>Simulation Time</p>
     </div>
-
-  
-
-
-    <div id="closed_data">
-
-    </div>
-
-
-
-    <div id="date" class="date_div_test1">
-      Date:
-    </div>
-
-    <div id="date" class="date_div_test">
-
-      <input type="date" id="datepicker" name='from' size='10' value="" />
-      <button type="button" id="prev_day_button">prev</button>
-      <button type="button" id="next_day_button">next</button>
-      <button type="button" id="daily_price_update" style="position:relative; bottom: -20%; left: 42%">update
-        table</button>
-
-    </div>
-
-
-
-
-
-
+  </div>
 
 
 
@@ -184,17 +238,166 @@
 
   </div>
 
+
+  <div id="coin">
+
+    <div id="Output_box_0"
+      style="width: 150px; position: absolute;  left: 30px; top: 60px;  font-family: 'Segoe UI', Arial, sans-serif; font-size:17px;">
+      {{symbols[0][0]}} </div>
+
+  </div>
+
+  <div>
+
+    <select id="timeframe" value="d" id="Output_box_0_1"
+      style="width: 55px; height: 19px; position: absolute;  left: 156px; top: 62px; font-size:14px"> D
+      <option value="1d">D</option>
+      <option value="1m">1m</option>
+      <option value="3m">3m</option>
+      <option value="5m">5m</option>
+      <option value="15m">15m</option>
+      <option value="30m">30m</option>
+      <option value="1h">1h</option>
+      <option value="2h">2h</option>
+      <option value="4h">4h</option>
+      <option value="12h">12h</option>
+      <option value="1w">W</option>
+      <option value="1M">1M</option>
+    </select>
+
+
+  </div>
+
+
+  <div style=" width: 30%; height: 20px; position:absolute; left: 28%; top: 58px " ;>
+
+    <div id="date" font-size:17px>
+      Datetime:
+    </div>
+
+    <div style="position:absolute; top: 0px ;left: 70px">
+      <input type="date" id="datepicker" name='from' size='14' value="" style="width: 90%; height: 20px;" />
+    </div>
+
+    <div style="position:absolute; top: 0px ;left: 180px">
+      <input type="time" id="timepicker" name='from' size='8' value="" style="width: 100%;  height: 20px;" />
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+  <div id="Output_box" style="width: 15px; position: absolute;  left: 32px; bottom: 40px;"> {{symbols[0][0]}} </div>
+  <div id="Output_box2" style="width: 150px; position: absolute;  left: 32px; bottom: 20px;"> {{symbols[0][2]}} </div>
+  <div id="Output_box3" value="{symbols[0][0]}}" style=" width: 300px; position:absolute; left: 12%; bottom: 27px;">
+  </div>
+
+
+  <div id="table_update"
+    style="width: 300px; float:left; position: absolute; top: 35px; left: 81%; font-style: italic;">
+  </div>
+
+
+  <div id="Trading_View" style="width: 250px;  position:absolute; left: 65%; bottom: 50px;">
+
+    Charts powered by
+    <a href="https://www.tradingview.com/HTML5-stock-forex-bitcoin-charting-library/?feature=technical-analysis-charts">
+      TradingView</a>
+
+  </div>
+
+
+
+
+  <div id="closed_data">
+
+  </div>
+
+
+
+
+  <div class="date_div_test">
+
+
+
+
+
+
+
+    <div style="width: 55px; position:relative; right: 20%; bottom: 40% ">
+
+
+
+    </div>
+  </div>
+
+  <div id="date" class="date_div_test">
+
+
+    <select id="interval">
+
+      <option value="1d">D</option>
+      <option value="1m">1m</option>
+      <option value="3m">3m</option>
+      <option value="5m">5m</option>
+      <option value="15m">15m</option>
+      <option value="30m">30m</option>
+      <option value="1h">1h</option>
+      <option value="2h">2h</option>
+      <option value="4h">4h</option>
+      <option value="12h">12h</option>
+      <option value="1w">W</option>
+      <option value="1M">1M</option>
+
+
+    </select>
+
+    <button type="button" id="prev_day_button" >prev</button>
+    <button type="button" id="next_day_button">next</button>
+    <div id="interval_label" style="position:absolute; top:1px;  left: -70px"> Interval: </div>
+
+
+  </div>
+
+
+
+
+  <button type="button" id="daily_price_update"
+    style="position: absolute; top: 35px; left: 93%; background:none; border:none; font-style: italic; color:rgb(83, 21, 228) "> 
+    <u>Refresh table</u>
+    </button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <div>
     <h2> </h2>
 
     <!--table for pairs--->
-    <div id="my_balances" style="overflow-y: scroll; height:83.5%;" class=table_div_test>
+    <div id="my_balances" class=table_div_test>
 
 
-      <table id="table_pair" class="tbl" border=1 frame=void rules=rows>
+      <table id="table_pair" class="tbl" border=1 rules=rows>
 
-        <thead>
+        <thead style="font-family: 'Century Gothic', sans-serif; font-weight: normal;">
           <tr style="background-color: rgb(227, 222, 222)">
+            <th id="flags" width="6.5%" style="font-size: 7px"> Flags</th>
             <th text-align: left;>Symbols</th>
             <th>Last</th>
             <th>Chg%</th>
@@ -207,8 +410,10 @@
 
           {% for pairs in symbols %}
 
-          <tr data value={{pairs[0]}} class="normal" onclick="onRow(this.id)" id={{pairs[0]}}>
+          <tr data value={{pairs[0]}} class="normal" id={{pairs[0]}}
+            style="font-family: 'Segoe UI', Arial, sans-serif;">
 
+            <td class="transparenttext" value='flag'>❤</td>
             <td> {{pairs[0]}} </td>
             <td> {{pairs[2]}} </td>
             <td> {{pairs[4]}}% </td>
@@ -226,6 +431,9 @@
 
     </div>
 
+
+
+
   </div>
 
   <form action="/history_test" method="post" id="get_history">
@@ -240,8 +448,8 @@
   <script>
     var app_host = '{{app_host}}';
     var app_port = '{{app_port}}';
-    var base_url = 'http://'+ '{{app_host}}' + ':'+ '{{app_port}}' + '/history'
-    console.log(base_url);
+    var base_url = 'http://' + '{{app_host}}' + ':' + '{{app_port}}' + '/history'
+    //console.log(base_url);
 
   </script>
 
@@ -249,12 +457,83 @@
   <script src="{{url_for('static', filename='chart.js')}}">
   </script>
 
+
+
+  <script>
+    function convert_to_milliseconds(time_duration) {
+      // Dictionary to store the conversion factors
+      var conversion_factors = {
+        "1d": 86400000,
+        "1m": 60000,
+        "3m": 180000,
+        "5m": 300000,
+        "15m": 900000,
+        "30m": 1800000,
+        "1h": 3600000,
+        "2h": 7200000,
+        "3h": 10800000,
+        "4h": 14400000,
+        "12h": 43200000,
+        "1w": 604800000,
+        "1M": 2678400000
+      }
+      // Check if the input is valid
+      if (!conversion_factors.hasOwnProperty(time_duration)) {
+        throw new Error("Invalid input: " + time_duration + ". Please use one of the following: " + Object.keys(conversion_factors).join(', '));
+      }
+      return conversion_factors[time_duration];
+    }
+
+
+
+  </script>
+
   <!-- This script sets the default value of input-date on the page load  -->
   <script>
+
+
+    const d = new Date();
+    //alert(d.getHours())
+
+    var now = new Date();
+    //var hours = now.getHours();
+    //var minutes = now.getMinutes();
+
+    var hours = 7;
+    var minutes = 59;
+    document.getElementById("timepicker").value = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes);
+
+
+
     document.getElementById("datepicker").valueAsDate = new Date();
+    //alert(document.getElementById("timepicker").value)
     var prev_day = document.getElementById("datepicker").valueAsDate;
     document.getElementById("Output_box3").innerHTML = new Date();
-    
+
+
+
+
+    //update simulation time
+    // Get the values from the date and time input elements
+    var dateValue = document.getElementById("datepicker").value;
+    var timeValue = document.getElementById("timepicker").value;
+
+    // Convert the values to a Date object
+    var date2 = new Date(dateValue + " " + timeValue);
+    var date = new Date(dateValue);
+
+    // Get the timestamp
+    var timestamp_simulation_time = date2.getTime();
+    //alert(timestamp_simulation_time)
+    document.getElementById("simulation_time").innerHTML = new Date(timestamp_simulation_time);
+
+
+
+
+
+
+
+
 
   </script>
 
@@ -270,26 +549,56 @@
       var start = Date.now();
 
       //*************************
-      document.getElementById('Output_box').innerHTML = row.getAttribute('value')
+      document.getElementById('Output_box').innerHTML = row.getAttribute('value');
+      document.getElementById('Output_box_0').innerHTML = row.getAttribute('value');
 
 
 
       document.getElementById("get_history").setAttribute('value', row.innerHTML)
       var start = Date.now();
-      console.log(row.getAttribute('id'));
+      //console.log(row.getAttribute('id'));
       var date_input = document.getElementById("datepicker");
+      //var date_timestamp = document.getElementById("Output_box4").innerHTML;
+      //alert(date_timestamp)
+
       //alert(date_input)
 
 
 
-    var base_url = 'http://'+ '{{app_host}}' + ':'+ '{{app_port}}' + '/history_test';
- 
-     
+      var base_url = 'http://' + '{{app_host}}' + ':' + '{{app_port}}' + '/history_test';
+      timeframe = document.getElementById('timeframe').value;
+      
+
+      //get change in interval
+      interval_handle = document.getElementById('interval');
+      interval = interval_handle.value;
+
+
+
+
+      //get simulation_current time
+      var dateTimeString = document.getElementById("simulation_time").innerHTML;
+
+      // Use the JavaScript Date object to parse the date and time input
+      var dateTime = new Date(dateTimeString);
+
+      // Convert the date and time to a timestamp in milliseconds
+      var timestamp1 = dateTime.getTime();
+      //alert(timestamp1);
+
+
+
+
+      //alert(timestamp1)
+
+
+      
+      //alert(timeframe)
       //Update chart historicaldata  
       fetch(base_url,
         {
           method: "POST",
-          headers: { "symbol": row.getAttribute('value'), "date_input": date_input.value },
+          headers: { "symbol": row.getAttribute('value'), "date_input": date_input.value, "timeframe": timeframe, "interval": interval, "date_input2": timestamp1 },
 
 
         })
@@ -298,15 +607,108 @@
         .then((response) => {
 
           //console.log(Date.now());
+
+
+
+
+
+          document.getElementById('Output_box2').innerHTML = response[response.length - 1].close;
+          // console.log(response);
+          var timestamp = response[response.length - 1].time_close; //had to convert it back to miliseconds, this was manipulated in backend fetch
+          document.getElementById('Output_box3').innerHTML = new Date(timestamp);
+          //alert(response[response.length - 1].time_close)
+
+          //document.getElementById('Output_box4').innerHTML = (timestamp);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          //chage timestamp to allign with system timezone:
+
+          // your object containing OHLC data
+
+
+
+          response.forEach(function (item) {
+            let date = new Date(item.time * 1000);
+            date.setUTCHours(date.getUTCHours() + 8);
+            date.setUTCDate(date.getUTCDate() + 8 / 24);
+            item.time = date.getTime() / 1000;
+          });
+
+
+
+
+
+
+
+
+
+
+
           candleSeries.setData(response);
 
+          candleSeries.applyOptions({
+            upColor: 'rgb(0, 163, 108)',
+            downColor: 'rgb(255,0,0)',
+            borderDownColor: 'rgb(255,0,0)',
+            borderUpColor: 'rgb(0, 163, 108)',
+            wickDownColor: 'rgb(255,0,0)',
+            wickUpColor: 'rgb(0, 163, 108)',
+          });
 
-          
-         // console.log(response);
-          var timestamp = response[response.length - 1].time * 1000; //had to convert it back to miliseconds, this was manipulated in backend fetch
-          document.getElementById('Output_box3').innerHTML = new Date(timestamp);
 
-         // console.log(Date.now());
+          let data = response[response.length - 1].close
+          let precision = (data.toString().split('.')[1] || []).length;
+
+          candleSeries.applyOptions({
+            priceFormat: {
+              type: 'price',
+              precision: precision,
+              minMove: 0.000001
+            },
+          });
+
+
+          chart.applyOptions({
+            priceScale: {
+              autoScale: true,
+            },
+          });
+
+
+
+
+
+          // console.log(Date.now());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         })
@@ -338,7 +740,7 @@
     function add_click_lister_table() {
 
       //alert('im working');
-      
+
       var tbody_row = document.querySelector("tbody");
       const rows = tbody_row.querySelectorAll("tr");
       rows.forEach(row => {
@@ -400,55 +802,46 @@
 
 
     function highlight_row_routine() {
-      let currentRow = null;
+
 
       var tbody_row = document.querySelector("tbody");
       const rows = tbody_row.querySelectorAll("tr");
-     
+
 
       // add event listener for clicking on rows
       rows.forEach(row => {
         row.addEventListener("click", () => {
+
+
+
+          chart.applyOptions({
+            priceScale: {
+              autoScale: true,
+            },
+          });
+
+
+
+
+
+
+
+
+          let currentRow = document.getElementsByClassName("highlight")[0];
           if (currentRow) {
             currentRow.classList.remove("highlight");
             currentRow.classList.add("normal");
           }
           currentRow = row;
-          currentRow.classList.remove("normal");
+          //currentRow.classList.remove("normal");
           currentRow.classList.add("highlight");
         });
       });
 
-      // add event listener for keyboard arrow keys
-      document.addEventListener("keydown", function (event) {
-        if (event.key === "ArrowUp" || event.key === "ArrowDown") {
-          event.preventDefault()
-          // check if a row is currently selected
-          if (currentRow) {
-            let newRow = null;
-            if (event.key === "ArrowUp") {
-              // move selection to the previous row
-              newRow = currentRow.previousElementSibling;
-            } else {
-              // move selection to the next row
-              newRow = currentRow.nextElementSibling;
-            }
-            // check if the new row exists
-            if (newRow) {
-              // remove highlighting from the previous selected row
-              currentRow.classList.remove("highlight");
 
-              // add highlighting to the new row
-              newRow.classList.add("highlight");
-              currentRow = newRow;
-              // scroll the new row into view
-              currentRow.scrollIntoView({ behavior: "auto", block: "nearest" });
-            }
-          }
-          //for arrow down selector
-          request_for_historical_data(currentRow);
-        }
-      });
+
+
+
     }
 
 
@@ -458,6 +851,72 @@
 
 
     highlight_row_routine();
+
+    // add event listener for keyboard arrow keys
+    document.addEventListener("keydown", function () {
+      if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+        event.preventDefault()
+
+
+        // check if a row is currently selected
+
+
+        //chart.priceScale().applyOptions({ autoScale: true })
+
+
+
+        var currentRow = document.getElementsByClassName("highlight")[0];
+        if (currentRow) {
+          let newRow = null;
+          if (event.key === "ArrowUp") {
+            // move selection to the previous row
+            newRow = currentRow.previousElementSibling;
+          } else {
+            // move selection to the next row
+            newRow = currentRow.nextElementSibling;
+          }
+          // check if the new row exists
+          if (newRow) {
+            // remove highlighting from the previous selected row
+            currentRow.classList.remove("highlight");
+
+            // add highlighting to the new row
+            newRow.classList.add("highlight");
+            currentRow = newRow;
+            // scroll the new row into view
+            currentRow.scrollIntoView({ behavior: "auto", block: "nearest" });
+          }
+        }
+        //for arrow down selector
+        request_for_historical_data(currentRow);
+
+      }
+    });
+
+
+
+    document.addEventListener("keydown", function () {
+      if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+        event.preventDefault()
+        // check if a row is currently selected
+
+
+
+
+        if (event.key === "ArrowLeft") {
+          // Move to previos Time increment
+          document.getElementById('prev_day_button').click();
+        } else {
+          // move to next time increment
+          document.getElementById('next_day_button').click();
+        }
+
+      }
+
+    });
+
+
+
 
 
   </script>
@@ -470,42 +929,61 @@
     let btn_down = document.getElementById("prev_day_button");
     btn_down.addEventListener('click', event => {
 
-      // Get the input element
-      var input = document.getElementById("datepicker");
 
 
-      //alert(prev_day);
-
-      // Get the current input value
-      var currentValue = input.value;
-
-      // Convert the current input value to a JavaScript Date object
-      var currentDate = new Date(currentValue);
-
-      // Increase the date by one day
-      currentDate.setDate(currentDate.getDate() - 1);
-
-      // Convert the new date back to a string in the format "yyyy-mm-dd"
-      var newValue = currentDate.toISOString().slice(0, 10);
-
-      // Update the input value
-      input.value = newValue;
+      //change the simulation_time w.r.t to input interval:
+      var interval_handle = document.getElementById('interval');
+      //alert('hello')
+      //alert(interval_handle.value)
+      var interval = interval_handle.value;
+      //alert(interval)
+      var interval_timestamp = convert_to_milliseconds(interval)
+      //alert(interval_timestamp)
 
 
+      //update simulation_time by subtracting timestamps
+      //get simulation_current time
+      var dateTimeString = document.getElementById("simulation_time").innerHTML;
+
+      // Use the JavaScript Date object to parse the date and time input
+      var dateTime = new Date(dateTimeString);
+
+      // Convert the date and time to a timestamp in milliseconds
+      var timestamp_new = dateTime.getTime() - interval_timestamp;
+      //alert( new Date(dateTime.getTime()))
+      //alert(  interval_timestamp)
+      //alert((  new Date(timestamp_new)))
+
+
+      var new_date = new Date(timestamp_new + 86400000); //offset need to work pa rito kasi hardcodded ung offset para tumama ung time sa datepicker
+
+      document.getElementById("datepicker").value = new_date.toISOString().slice(0, 10)
+      //alert(new_date.toISOString().slice(0, 10))
+      document.getElementById("simulation_time").innerHTML = new Date(timestamp_new);
+      //alert(new date(document.getElementById("datepicker").valueAsDate))
 
 
 
 
+      //sets update table flag no null every change on date
+      document.getElementById("table_update").innerHTML = "table not updated";
+      document.getElementById("table_update").className = "redtext";
 
-      // Create a new "change" event
-      var event = new Event("change");
 
-      // Dispatch the event on the input
-      input.dispatchEvent(event);
+
+
+      var current_row_selected = document.getElementsByClassName('highlight')[0];
+      request_for_historical_data(current_row_selected);
 
       //console.log(new Date(new Date().setDate(new Date().getDate() - 5)));
       //alert((new Date(new Date().setDate(new Date().getDate() - 5))));
       //alert(document.getElementById("datepicker").valueAsDate -5);
+
+
+
+
+
+
 
 
     });
@@ -514,30 +992,57 @@
     let btn_up = document.getElementById("next_day_button");
     btn_up.addEventListener('click', event => {
 
-      // Get the input element
-      var input = document.getElementById("datepicker");
 
 
-      // Get the current input value
-      var currentValue = input.value;
 
-      // Convert the current input value to a JavaScript Date object
-      var currentDate = new Date(currentValue);
+      //change the simulation_time w.r.t to input interval:
+      //change the simulation_time w.r.t to input interval:
+      var interval_handle = document.getElementById('interval');
+      //alert('hello')
+      //alert(interval_handle.value)
+      interval = interval_handle.value;
+      var interval_timestamp = convert_to_milliseconds(interval)
+      //alert(interval_timestamp)
 
-      // Increase the date by one day
-      currentDate.setDate(currentDate.getDate() + 1);
 
-      // Convert the new date back to a string in the format "yyyy-mm-dd"
-      var newValue = currentDate.toISOString().slice(0, 10);
+      //update simulation_time by subtracting timestamps
+      //get simulation_current time
+      var dateTimeString = document.getElementById("simulation_time").innerHTML;
 
-      // Update the input value
-      input.value = newValue;
+      // Use the JavaScript Date object to parse the date and time input
+      var dateTime = new Date(dateTimeString);
 
-      // Create a new "change" event
-      var event = new Event("change");
+      // Convert the date and time to a timestamp in milliseconds
+      var timestamp_new = dateTime.getTime() + interval_timestamp;
+      //alert((timestamp_new))
 
-      // Dispatch the event on the input
-      input.dispatchEvent(event);
+
+      var new_date = new Date(timestamp_new + 86400000); //balikan to offset workaround
+      document.getElementById("datepicker").value = new_date.toISOString().slice(0, 10)
+      //alert(new Date(timestamp_new))
+
+      document.getElementById("simulation_time").innerHTML = new Date(timestamp_new);
+
+
+
+
+
+
+
+
+      //sets update table flag no null every change on date
+      document.getElementById("table_update").innerHTML = "table not updated";
+      document.getElementById("table_update").className = "redtext";
+
+      var current_row_selected = document.getElementsByClassName('highlight')[0];
+      request_for_historical_data(current_row_selected);
+
+
+
+
+
+
+
 
 
 
@@ -573,15 +1078,15 @@
 
       for (var i = 1, row; row = table.rows[i]; i++) {
 
-        var y = row.cells[2].innerHTML.replace("%", "");
+        var y = row.cells[3].innerHTML.replace("%", "");
         y = +y;
         if (+y >= 0) {
           //console.log('positive');
-          row.cells[2].className = "greentext"
+          row.cells[3].className = "greentext"
         }
         else {
           //console.log('negative');
-          row.cells[2].className = "redtext"
+          row.cells[3].className = "redtext"
         }
 
 
@@ -607,11 +1112,125 @@
     input.addEventListener("change", function () {
       //alert('change in date');
       //alert(document.getElementsByClassName('highlight')[0].innerHTML);
-      
+
       //sets update table flag no null every change on date
-      document.getElementById("table_update").innerHTML = "";
+      document.getElementById("table_update").innerHTML = "table not updated";
+      document.getElementById("table_update").className = "redtext";
+
+
+      //update simulation time
+      // Get the values from the date and time input elements
+      var dateValue = document.getElementById("datepicker").value;
+      var timeValue = document.getElementById("timepicker").value;
+
+      // Convert the values to a Date object
+      var date2 = new Date(dateValue + " " + timeValue);
+      var date = new Date(dateValue);
+
+      // Get the timestamp
+      var timestamp_simulation_time = date2.getTime();
+      //alert(timestamp_simulation_time)
+      document.getElementById("simulation_time").innerHTML = new Date(timestamp_simulation_time);
+
+
+
       var current_row_selected = document.getElementsByClassName('highlight')[0];
       request_for_historical_data(current_row_selected);
+
+
+      //table update notif:
+      
+      
+
+
+
+
+
+    });
+
+
+  </script>
+
+
+
+  <script>
+
+    var input2 = document.getElementById("timepicker");
+
+
+    //alert(prev_day);
+
+    // Add an event listener for the "change" event
+    input2.addEventListener("change", function () {
+
+      //alert(document.getElementsByClassName('highlight')[0].innerHTML);
+
+      //sets update table flag no null every change on date
+      document.getElementById("table_update").innerHTML = "table not updated";
+      document.getElementById("table_update").className = "redtext";
+
+
+      //update simulation time
+      // Get the values from the date and time input elements
+      var dateValue = document.getElementById("datepicker").value;
+      var timeValue = document.getElementById("timepicker").value;
+
+      // Convert the values to a Date object
+      var date2 = new Date(dateValue + " " + timeValue);
+      var date = new Date(dateValue);
+
+      // Get the timestamp
+      var timestamp_simulation_time = date2.getTime();
+      //alert(timestamp_simulation_time)
+      document.getElementById("simulation_time").innerHTML = new Date(timestamp_simulation_time);
+
+
+
+      var current_row_selected = document.getElementsByClassName('highlight')[0];
+      request_for_historical_data(current_row_selected);
+
+
+
+
+    });
+
+
+  </script>
+
+
+
+
+
+
+  <script>
+
+    var timeframe_change = document.getElementById("timeframe");
+
+
+
+    //alert(prev_day);
+
+    // Add an event listener for the "change" event on tf object
+    timeframe_change.addEventListener("change", function () {
+
+      var current_row_selected = document.getElementsByClassName('highlight')[0];
+      //alert(current_row_selected.getAttribute('value'));
+
+      var event = new MouseEvent("click", {
+        bubbles: true,
+        cancelable: true,
+        view: window
+      });
+
+      current_row_selected.dispatchEvent(event);
+
+
+      document.getElementById("interval").value = document.getElementById('timeframe').value;
+
+
+
+
+
     });
 
 
@@ -630,8 +1249,9 @@
     // Add an event listener for the "change" event
     daily_price_change_request.addEventListener("click", function () {
 
-      
+
       document.getElementById("table_update").innerHTML = "table updating...";
+      document.getElementById("table_update").className = "blacktext";
       // Code to execute when the input's value changes
 
       //Container for prev-day
@@ -641,15 +1261,37 @@
       var newValue2 = currentDate2.toISOString().slice(0, 10);
       prev_day = newValue2;
 
+      //alert(input.value)
+      //alert(prev_day)
 
-      var base_url = 'http://'+ '{{app_host}}' + ':'+ '{{app_port}}' + '/update_prices';
+
+      //get simulation_current time
+      var dateTimeString = document.getElementById("simulation_time").innerHTML;
+
+      // Use the JavaScript Date object to parse the date and time input
+      var dateTime = new Date(dateTimeString);
+
+      // Convert the date and time to a timestamp in milliseconds
+      var timestamp1 = dateTime.getTime();
+
+
+      //get the interval increment to pass on request
+      interval_handle = document.getElementById('interval');
+      interval = interval_handle.value;
+
+
+      //get the timeframe to pass on request
+      timeframe = document.getElementById('timeframe').value;
+
+
+      var base_url = 'http://' + '{{app_host}}' + ':' + '{{app_port}}' + '/update_prices';
       //console.log(base_url);
       //Update all pairs historicaldata  
       fetch(base_url,
 
         {
           method: "POST",
-          headers: { "present_day": input.value, "prev_day": prev_day },
+          headers: { "present_day": input.value, "prev_day": prev_day, "timestamp_input": timestamp1 , "interval_input": interval, 'timeframe': timeframe},
 
 
         })
@@ -658,12 +1300,24 @@
         .then((response) => {
 
 
-          console.log(response);
+          //console.log(response);
+
+
 
 
           //delete all rows in present table
           var table = document.querySelector("#table_pair tbody");
-          
+
+
+          //get simulation_current time
+          var dateTimeString = document.getElementById("simulation_time").innerHTML;
+
+          // Use the JavaScript Date object to parse the date and time input
+          var dateTime = new Date(dateTimeString);
+
+          // Convert the date and time to a timestamp in milliseconds
+          var timestamp1 = dateTime.getTime();
+
 
 
           var rowCount = table.rows.length;
@@ -672,44 +1326,105 @@
             table.deleteRow(0);
 
           }
-          
-          
+
+
           //Update table with new data from new time/day
           //var table = document.getElementById("table_pair");
           var newData = response;
 
           for (var i = 0; i < newData.length; i++) {
+
+
+
+            if (i < 5) {
+
+              //alert(new Date(newData[i][1]))
+              //alert(new Date(timestamp1))
+              //console.log('hell0');
+
+            }
+
+            // if (newData[i][1] == timestamp1) {
+
+
             var row = table.insertRow(i);
             row.classList.add("normal");
-            row.setAttribute('id', 'row' + (i + 1));
-            row.setAttribute('onclick', 'onRow(this.id)');
+            row.setAttribute('id', newData[i][0]);
+            row.setAttribute('style', "font-family: 'Segoe UI', Arial, sans-serif;")
+
             row.setAttribute('value', newData[i][0]);
 
             var cell = row.insertCell(0);
-            cell.innerHTML = newData[i][0];
+            cell.innerHTML = "❤";
+            cell.setAttribute('class', "transparenttext");
+            cell.setAttribute('value', 'flag');
+
+
 
             var cell = row.insertCell(1);
-            cell.innerHTML = newData[i][2];
+            cell.innerHTML = newData[i][0];
 
             var cell = row.insertCell(2);
+            cell.innerHTML = newData[i][2];
+
+            var cell = row.insertCell(3);
             cell.innerHTML = newData[i][4] + "%";
 
 
-            var cell = row.insertCell(3);
-            cell.innerHTML = newData[i][3];
-
+            var cell = row.insertCell(4);
+            cell.innerHTML = (newData[i][3]);
           }
+
+          //}
+
+
 
           add_click_lister_table();
           update_color();
           highlight_row_routine();
           document.getElementById("table_update").innerHTML = "table updated.";
+          document.getElementById("table_update").className = "blacktext";
+          heart_flags();
+
+
+          //add the heart flags for the new data
+
+          rows = table.querySelectorAll("tr");
+          //console.log(heartFlagState)
+          rows.forEach(row => {
+            var heartFlag = row.querySelector("td[value='flag']");
+            //alert(heartFlag.className)
+            //alert(heartFlagState[row.getAttribute("id")]);
+            if (heartFlagState[row.getAttribute("id")]) {
+
+              // alert('redtext')
+              heartFlag.className = "redtext";
+
+            } else {
+              heartFlag.className = "transparenttext";
+            }
+
+
+
+
+
+
+
+          });
+
+          var button = document.getElementById("flags");
+          var event = new Event("dblclick");
+          button.dispatchEvent(event);
+          button.click();
 
 
 
 
 
         });
+
+
+
 
 
 
@@ -738,7 +1453,7 @@
 
     // Listen for double clicks on all the header elements
     var headers = table.getElementsByTagName("th");
-    for (var i = 0; i < headers.length; i++) {
+    for (var i = 1; i < headers.length; i++) {
       headers[i].addEventListener("dblclick", function (event) {
         // Get the index of the clicked header
         var headerIndex = Array.prototype.indexOf.call(event.target.parentNode.children, event.target);
@@ -752,7 +1467,7 @@
         rowArray.sort(function (a, b) {
           var cellA = a.getElementsByTagName("td")[headerIndex].innerHTML;
           var cellB = b.getElementsByTagName("td")[headerIndex].innerHTML;
-          if (headerIndex === 1 || headerIndex === 2) {
+          if (headerIndex === 2 || headerIndex === 3) {
             cellA = parseFloat(cellA);
             cellB = parseFloat(cellB);
           }
@@ -776,6 +1491,10 @@
       });
     }
 
+
+    //for heats flag sorting algo
+
+
     // Listen for clicks on all the rows
     var rows = table.getElementsByTagName("tr");
     for (var i = 0; i < rows.length; i++) {
@@ -791,6 +1510,133 @@
 
 
   </script>
+
+
+  <script>
+
+
+    headers[0].addEventListener("dblclick", function (event) {
+      // Get all the rows in the table (excluding the header row)
+      var rows = table.getElementsByTagName("tr");
+      var rowArray = [];
+      for (var i = 1; i < rows.length; i++) {
+        rowArray.push(rows[i]);
+      }
+      // Sort the rows based on the class of the heart symbols in the first column
+      rowArray.sort(function (a, b) {
+        var heartA = a.getElementsByTagName("td")[0].classList;
+        var heartB = b.getElementsByTagName("td")[0].classList;
+        //console.log("Sorting " + heartA + " and " + heartB);
+        // Check if heartA is "redtext" and heartB is "transparenttext"
+        if (heartA.contains("redtext") && heartB.contains("transparenttext")) {
+          return -1;
+        } else if (heartA.contains("transparenttext") && heartB.contains("redtext")) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      // Re-add the sorted rows to the table
+      table.tBodies[0].innerHTML = "";
+      for (var i = 0; i < rowArray.length; i++) {
+        table.tBodies[0].appendChild(rowArray[i]);
+      }
+      // Toggle the sort order
+      sortAscending = !sortAscending;
+
+
+
+      //update flags for heartflagState:
+
+    });
+
+
+
+  </script>
+
+
+  <script>
+    var tableDiv = document.getElementById("my_balances");
+    tableDiv.addEventListener("mouseover", function () {
+      this.classList.add("scrollbar-hover");
+    });
+    tableDiv.addEventListener("mouseout", function () {
+      this.classList.remove("scrollbar-hover");
+    });
+  </script>
+
+
+
+
+  <script>
+
+
+    function heart_flags() {
+      const hearts = document.querySelectorAll('td[value = "flag"]');
+
+      hearts.forEach(heart => {
+        heart.addEventListener("mouseover", function () {
+          if (!this.clicked) {
+
+            if (this.className != "redtext") {
+              this.className = "greytext";
+            }
+          }
+        });
+      });
+
+      hearts.forEach(heart => {
+        heart.addEventListener("mouseout", function () {
+          if (!this.clicked) {
+            if (this.className != "redtext") {
+              this.className = "transparenttext";
+            }
+          }
+        });
+      });
+
+      hearts.forEach(heart => {
+        heart.addEventListener("click", function () {
+          this.clicked = !this.clicked;
+          this.className = this.clicked ? "redtext" : "transparenttext";
+
+
+          update_heartFlagState();
+        });
+      });
+
+    }
+    heart_flags();
+
+  </script>
+
+
+  <script>
+    var heartFlagState = {};
+
+    function update_heartFlagState() {
+      var rows = document.querySelectorAll("#table_pair tr");
+      rows.forEach(row => {
+        var heartFlag = row.querySelector("td[value='flag']");
+        //console.log(heartFlag);
+        if (heartFlag && heartFlag.className === "redtext") {
+          heartFlagState[row.getAttribute("id")] = true;
+        } else {
+          heartFlagState[row.getAttribute("id")] = false;
+        }
+      });
+    }
+
+
+
+
+  </script>
+
+
+
+
+
+
 
 
 

@@ -33,6 +33,8 @@ var chart = LightweightCharts.createChart(document.getElementById('chart'), {
 	},
 	timeScale: {
 		borderColor: 'rgba(197, 203, 206, 0.8)',
+		timeVisible: true,
+		secondsVisible: false,
 	},
 });
 
@@ -50,7 +52,22 @@ var base_url = 'http://'+ app_host + ':'+ app_port + '/history';
 console.log(app_host);
 
 
-fetch(base_url)
+var timeframe = document.getElementById('timeframe').value;
+//alert(timeframe)
+
+
+fetch(base_url,   {
+
+
+
+	method: "POST",
+	headers: {  "timeframe": timeframe }
+
+
+  })
+	
+	
+	
 
 	.then((r) => r.json())
 	.then((response) => {
