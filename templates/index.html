@@ -1,8 +1,13 @@
 <html>
 
 <head meta name="viewport" content="width=device-width">
+<<<<<<< HEAD
   <title> Project TES</title>
   <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+=======
+  <title> Project TESi</title>
+  <script src="https://unpkg.com/lightweight-charts@3.8.0/dist/lightweight-charts.standalone.production.js"></script>
+>>>>>>> c78a1af69224ed1b34cec86e348a2672c7f3b35d
 
 </head>
 
@@ -410,8 +415,17 @@
 
           {% for pairs in symbols %}
 
+<<<<<<< HEAD
           <tr data value={{pairs[0]}} class="normal" id={{pairs[0]}}
             style="font-family: 'Segoe UI', Arial, sans-serif;">
+=======
+			
+          <tr data value={{pairs[0]}} class="normal" id={{pairs[0]}}
+            style="font-family: 'Segoe UI', Arial, sans-serif;">
+	   
+																	  
+												
+>>>>>>> c78a1af69224ed1b34cec86e348a2672c7f3b35d
 
             <td class="transparenttext" value='flag'>❤</td>
             <td> {{pairs[0]}} </td>
@@ -448,7 +462,15 @@
   <script>
     var app_host = '{{app_host}}';
     var app_port = '{{app_port}}';
+<<<<<<< HEAD
     var base_url = 'http://' + '{{app_host}}' + ':' + '{{app_port}}' + '/history'
+=======
+			
+    var base_url = 'http://' + '{{app_host}}' + ':' + '{{app_port}}' + '/history'
+	   
+																			   
+												
+>>>>>>> c78a1af69224ed1b34cec86e348a2672c7f3b35d
     //console.log(base_url);
 
   </script>
@@ -550,7 +572,14 @@
 
       //*************************
       document.getElementById('Output_box').innerHTML = row.getAttribute('value');
+<<<<<<< HEAD
       document.getElementById('Output_box_0').innerHTML = row.getAttribute('value');
+=======
+			
+      document.getElementById('Output_box_0').innerHTML = row.getAttribute('value');
+	   
+												
+>>>>>>> c78a1af69224ed1b34cec86e348a2672c7f3b35d
 
 
 
@@ -802,6 +831,14 @@
 
 
     function highlight_row_routine() {
+<<<<<<< HEAD
+=======
+			
+
+	   
+	  
+												
+>>>>>>> c78a1af69224ed1b34cec86e348a2672c7f3b35d
 
       var tbody_row = document.querySelector("tbody");
       const rows = tbody_row.querySelectorAll("tr");
@@ -811,6 +848,10 @@
       rows.forEach(row => {
         row.addEventListener("click", () => {
 
+<<<<<<< HEAD
+=======
+			
+>>>>>>> c78a1af69224ed1b34cec86e348a2672c7f3b35d
 
 
           chart.applyOptions({
@@ -826,6 +867,11 @@
 
 
 
+<<<<<<< HEAD
+=======
+	   
+												
+>>>>>>> c78a1af69224ed1b34cec86e348a2672c7f3b35d
           let currentRow = document.getElementsByClassName("highlight")[0];
           if (currentRow) {
             currentRow.classList.remove("highlight");
@@ -837,10 +883,31 @@
         });
       });
 
+<<<<<<< HEAD
+=======
+			
+>>>>>>> c78a1af69224ed1b34cec86e348a2672c7f3b35d
 
 
 
 
+	 
+
+
+
+
+
+
+
+<<<<<<< HEAD
+    highlight_row_routine();
+=======
+							
+	   
+
+	  
+
+	  
     }
 
 
@@ -853,6 +920,42 @@
 
     // add event listener for keyboard arrow keys
     document.addEventListener("keydown", function () {
+																	  
+								  
+												 
+
+																		   
+						   
+							  
+										  
+												   
+														 
+					
+											   
+													 
+			 
+										  
+						 
+																   
+													   
+
+												
+												
+								  
+											 
+																				
+			 
+		   
+								   
+												  
+		  
+		 
+		 
+												
+>>>>>>> c78a1af69224ed1b34cec86e348a2672c7f3b35d
+
+												 
+													  
       if (event.key === "ArrowUp" || event.key === "ArrowDown") {
         event.preventDefault()
 
@@ -1300,8 +1403,16 @@
 
 
           //console.log(response);
+<<<<<<< HEAD
 
 
+=======
+			
+
+
+	   
+												
+>>>>>>> c78a1af69224ed1b34cec86e348a2672c7f3b35d
 
 
           //delete all rows in present table
@@ -1348,9 +1459,20 @@
 
             var row = table.insertRow(i);
             row.classList.add("normal");
+<<<<<<< HEAD
             row.setAttribute('id', newData[i][0]);
             row.setAttribute('style', "font-family: 'Segoe UI', Arial, sans-serif;")
 
+=======
+			
+            row.setAttribute('id', newData[i][0]);
+            row.setAttribute('style', "font-family: 'Segoe UI', Arial, sans-serif;")
+
+	   
+													
+			
+												
+>>>>>>> c78a1af69224ed1b34cec86e348a2672c7f3b35d
             row.setAttribute('value', newData[i][0]);
 
             var cell = row.insertCell(0);
