@@ -488,10 +488,10 @@ def history():
          
         candlestick = { 
             "time": data[0]/1000, 
-            "open": data[1], 
-            "high": data[2], 
-            "low": data[3], 
-            "close": data[4] 
+            "open": float(data[1]), 
+            "high": float(data[2]), 
+            "low": float(data[3]), 
+            "close": float(data[4]) 
          }
     
         processed_candlesticks.append(candlestick)
@@ -638,10 +638,10 @@ def history_test():
          
         candlestick = { 
             "time": data[0]/1000, 
-            "open": data[1], 
-            "high": data[2], 
-            "low": data[3], 
-            "close": data[4],
+            "open": float(data[1]), 
+            "high": float(data[2]), 
+            "low": float(data[3]), 
+            "close": float(data[4]),
             "time_close": data[6]
          }
     

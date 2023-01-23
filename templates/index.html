@@ -2,7 +2,7 @@
 
 <head meta name="viewport" content="width=device-width">
   <title> Project TES</title>
-  <script src="https://unpkg.com/lightweight-charts@3.8.0/dist/lightweight-charts.standalone.production.js"></script>
+  <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
 
 </head>
 
@@ -410,12 +410,8 @@
 
           {% for pairs in symbols %}
 
-<<<<<<< HEAD
           <tr data value={{pairs[0]}} class="normal" id={{pairs[0]}}
             style="font-family: 'Segoe UI', Arial, sans-serif;">
-=======
-          <tr data value={{pairs[0]}} class="normal"  id={{pairs[0]}}>
->>>>>>> 901606a3db115f696d75416dac622b14f69a55df
 
             <td class="transparenttext" value='flag'>❤</td>
             <td> {{pairs[0]}} </td>
@@ -452,11 +448,7 @@
   <script>
     var app_host = '{{app_host}}';
     var app_port = '{{app_port}}';
-<<<<<<< HEAD
     var base_url = 'http://' + '{{app_host}}' + ':' + '{{app_port}}' + '/history'
-=======
-    var base_url = 'http://'+ '{{app_host}}' + ':'+ '{{app_port}}' + '/history'
->>>>>>> 901606a3db115f696d75416dac622b14f69a55df
     //console.log(base_url);
 
   </script>
@@ -558,10 +550,7 @@
 
       //*************************
       document.getElementById('Output_box').innerHTML = row.getAttribute('value');
-<<<<<<< HEAD
       document.getElementById('Output_box_0').innerHTML = row.getAttribute('value');
-=======
->>>>>>> 901606a3db115f696d75416dac622b14f69a55df
 
 
 
@@ -624,7 +613,7 @@
 
 
           document.getElementById('Output_box2').innerHTML = response[response.length - 1].close;
-          // console.log(response);
+          //console.log(response);
           var timestamp = response[response.length - 1].time_close; //had to convert it back to miliseconds, this was manipulated in backend fetch
           document.getElementById('Output_box3').innerHTML = new Date(timestamp);
           //alert(response[response.length - 1].time_close)
@@ -813,11 +802,6 @@
 
 
     function highlight_row_routine() {
-<<<<<<< HEAD
-
-=======
-      
->>>>>>> 901606a3db115f696d75416dac622b14f69a55df
 
       var tbody_row = document.querySelector("tbody");
       const rows = tbody_row.querySelectorAll("tr");
@@ -827,7 +811,6 @@
       rows.forEach(row => {
         row.addEventListener("click", () => {
 
-<<<<<<< HEAD
 
 
           chart.applyOptions({
@@ -843,8 +826,6 @@
 
 
 
-=======
->>>>>>> 901606a3db115f696d75416dac622b14f69a55df
           let currentRow = document.getElementsByClassName("highlight")[0];
           if (currentRow) {
             currentRow.classList.remove("highlight");
@@ -856,7 +837,6 @@
         });
       });
 
-<<<<<<< HEAD
 
 
 
@@ -870,55 +850,6 @@
 
 
     highlight_row_routine();
-=======
-
-      
-
-      
-    }
-
-
-
-
-
-
-
-    highlight_row_routine();
-
-    // add event listener for keyboard arrow keys
-    document.addEventListener("keydown", function () {
-           if (event.key === "ArrowUp" || event.key === "ArrowDown") {
-            event.preventDefault()
-          // check if a row is currently selected
-
-          var currentRow = document.getElementsByClassName("highlight")[0];
-          if (currentRow) {
-            let newRow = null;
-            if (event.key === "ArrowUp") {
-              // move selection to the previous row
-              newRow = currentRow.previousElementSibling;
-            } else {
-              // move selection to the next row
-              newRow = currentRow.nextElementSibling;
-            }
-            // check if the new row exists
-            if (newRow) {
-              // remove highlighting from the previous selected row
-              currentRow.classList.remove("highlight");
-
-              // add highlighting to the new row
-              newRow.classList.add("highlight");
-              currentRow = newRow;
-              // scroll the new row into view
-              currentRow.scrollIntoView({ behavior: "auto", block: "nearest" });
-            }
-          }
-          //for arrow down selector
-          request_for_historical_data(currentRow);
-          
-        }
-      });
->>>>>>> 901606a3db115f696d75416dac622b14f69a55df
 
     // add event listener for keyboard arrow keys
     document.addEventListener("keydown", function () {
@@ -1369,11 +1300,8 @@
 
 
           //console.log(response);
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 901606a3db115f696d75416dac622b14f69a55df
 
 
           //delete all rows in present table
@@ -1420,14 +1348,9 @@
 
             var row = table.insertRow(i);
             row.classList.add("normal");
-<<<<<<< HEAD
             row.setAttribute('id', newData[i][0]);
             row.setAttribute('style', "font-family: 'Segoe UI', Arial, sans-serif;")
 
-=======
-            row.setAttribute('id', 'row' + (i + 1));
-            
->>>>>>> 901606a3db115f696d75416dac622b14f69a55df
             row.setAttribute('value', newData[i][0]);
 
             var cell = row.insertCell(0);
