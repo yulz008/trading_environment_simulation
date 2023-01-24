@@ -674,12 +674,13 @@
 
           let data = response[response.length - 1].close
           let precision = (data.toString().split('.')[1] || []).length;
+          //alert(precision)
 
           candleSeries.applyOptions({
             priceFormat: {
               type: 'price',
               precision: precision,
-              minMove: 0.000001
+              minMove: 1/(10**(precision))
             },
           });
 
