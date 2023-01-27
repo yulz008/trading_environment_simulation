@@ -8,7 +8,7 @@
 
 **Sample WebPage**
 
-![Capture](https://user-images.githubusercontent.com/117939069/212793204-ae405591-78e9-428f-82cd-95932adc21fd.PNG)
+![image](https://user-images.githubusercontent.com/117939069/215058182-adc78225-81cd-49e6-9651-d4ce589bca64.png)
 
 
 Instruction:
